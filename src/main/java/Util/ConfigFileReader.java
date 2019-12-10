@@ -12,10 +12,10 @@ public class ConfigFileReader {
     //String File="/Users/techops/IdeaProjects/com.SpreeHomePage/src/test/testData/config/testconfig.properties";
 
     public ConfigFileReader() {
-        String configFilename = "testconfig.properties";
+        String configFilename = "testdata.properties";
         FileInputStream inputFileStream = null;
         this.prop = new Properties();
-        String configFilePath = System.getProperty("user.dir") + "/" + "src/test/testData/config" + "/" + configFilename;
+        String configFilePath = System.getProperty("user.dir") + "/" + "src/main/resources/config" + "/" + configFilename;
 
         try {
             inputFileStream = new FileInputStream(configFilePath);

@@ -32,5 +32,13 @@ public class SuiteManager {
 
     }
 
+    @BeforeTest
+    public void getSearchProp()
+    {
+        String searchprod1=config.getProperty("searchprod");
+
+    }
+
+
 
 }
