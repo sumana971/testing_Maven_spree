@@ -41,6 +41,7 @@ public class ShoppingCartPage extends SuiteManager  {
     public void getCartItems()
         {
             shoppingcart.checkout();
+            //shopping cart page to be disp
         }
 
 
