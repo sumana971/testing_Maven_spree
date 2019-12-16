@@ -2,6 +2,7 @@ package Pages;
 
 import Suite.SuiteManager;
 import Util.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,6 +30,9 @@ public class HomePage extends SuiteManager {
     @FindBy(xpath = "//a[@class='d-block text-center']")
     List<WebElement> list;
 
+    @FindBy(css="div[id^='product_']")
+    List<WebElement>bgs;
+
     @FindBy(xpath = "//input[@type='search']")
     WebElement searchbox;
 
@@ -51,20 +55,28 @@ public class HomePage extends SuiteManager {
         //System.out.println(message);
 
     }
-
+//Verify the bags List
     public void doverifyListOfBags() {
-        for (WebElement bags : list) {
+        for (WebElement bags : bgs) {
             String bg_text = bags.getText();
             if (bg_text.contains("Bag")) {
                 System.out.println("The items which contain bag are" + bg_text);
             }
         }
     }
+    //Reading the bag keyword from config file
+    public void getProperties (String configname)
+    {
+        WebDriverWait wait = new WebDriverWait(DriverManager.driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(searchbox));
+        searchbox.sendKeys(configname);
+        searchbutton.click();
+        doverifyListOfBags();
 
+    }
 
-
-
-        public ProductPage doClick ()
+// Click the selected item and add to cart and proceed with the checkout
+    public ProductPage doClick ()
         {
             WebDriverWait wait = new WebDriverWait(DriverManager.driver, 10);
             wait.until(ExpectedConditions.elementToBeClickable(bags));
@@ -84,16 +96,8 @@ public class HomePage extends SuiteManager {
             return new ProductPage();
         }
 
-        public void getProperties (String configname)
-        {
-            WebDriverWait wait = new WebDriverWait(DriverManager.driver, 10);
-            wait.until(ExpectedConditions.elementToBeClickable(searchbox));
-            searchbox.sendKeys(configname);
-            searchbutton.click();
-            doverifyListOfBags();
 
-        }
-
+//SHopping cart details
         public ShoppingCart getcartdetails()
         {
             cartbtn.click();
