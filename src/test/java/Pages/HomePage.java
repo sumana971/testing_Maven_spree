@@ -16,14 +16,9 @@ public class HomePage extends SuiteManager {
     @FindBy(xpath = "//a[.='Bags']")
     WebElement bags;
 
-    @FindBy(xpath = "//a[.='Mugs']")
-    WebElement Mugs;
-
     @FindBy(xpath = "//a[@class='cart-info nav-link full']")
     WebElement cartbtn;
 
-    @FindBy(xpath = "//a[.='Clothing']")
-    WebElement clothing;
     @FindBy(xpath = "//div[.='Logged in successfully']")
     WebElement msg;
 
@@ -39,17 +34,9 @@ public class HomePage extends SuiteManager {
     @FindBy(xpath = "//input[@type='submit']")
     WebElement searchbutton;
 
-    //To verify Shopping cart
-
-
-
-    //List<WebElement> list=DriverManager.driver.findElements(By.xpath())
-
-
     public HomePage() {
         PageFactory.initElements(DriverManager.driver, this);
     }
-
     public String verifyMsgIsDisplayed() {
         return msg.getText();
         //System.out.println(message);
@@ -87,17 +74,10 @@ public class HomePage extends SuiteManager {
                     bags.click();
                 }
             }
-
-
-            //wait.until(ExpectedConditions.elementToBeClickable(Mugs));
-           // Mugs.click();
-           // wait.until(ExpectedConditions.elementToBeClickable(clothing));
-            //clothing.click();
             return new ProductPage();
         }
 
-
-//SHopping cart details
+        //Shopping cart details
         public ShoppingCart getcartdetails()
         {
             cartbtn.click();
