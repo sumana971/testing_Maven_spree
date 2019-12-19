@@ -26,12 +26,31 @@ public class LoginPage extends SuiteManager {
     @FindBy(xpath="//h3[.='Login as Existing Customer']")
     WebElement textmsg;
 
+    @FindBy(xpath="//div[.='Invalid email or password.']")
+    WebElement errmsg;
+
+    @FindBy(xpath = "//a[.='Create a new account']")
+    WebElement createnewlink;
+
+    @FindBy(xpath="//a[.='Forgot Password?']")
+    WebElement forgotpwd;
+
     public void enterValue(WebElement field, String value)
 
     {
         field.click();
         field.clear();
         field.sendKeys(value);
+    }
+
+    public boolean verifycreateaccntdisplayed()
+    {
+        return createnewlink.isDisplayed();
+    }
+
+    public boolean verifyforgotpwdlink()
+    {
+        return forgotpwd.isDisplayed();
     }
 
     public HomePage login(String username, String password)
@@ -63,6 +82,13 @@ public class LoginPage extends SuiteManager {
         passwordfield.sendKeys(pwd);
         loginbtn.click();
         return new HomePage();
+    }
+
+    public String displayerrmsg()
+    {
+        String emsg=errmsg.getText();
+        return emsg;
+
     }
 
 

@@ -44,5 +44,11 @@ public class ShoppingCartPage extends SuiteManager  {
             //shopping cart page to be disp
         }
 
+        @Test
+    public void getDuplicateItems()
+        {
+            shoppingcart.verifyduplicateitems();
+        }
+
 
 }

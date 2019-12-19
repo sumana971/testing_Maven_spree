@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -35,7 +36,9 @@ public class Basepage {
         driver.findElement(By.xpath("//input[@class='btn btn-lg btn-success btn-block']")).click();
         WebElement msgactual = driver.findElement(By.xpath("//div[.='Logged in successfully']"));
         String text = msgactual.getText();
+        Assert.assertEquals(text,"Logged in successfully","user is logged in");
         String title=driver.getTitle();
+        Assert.assertEquals(title,"Spree Demo Site");
         System.out.println(title);
 
 

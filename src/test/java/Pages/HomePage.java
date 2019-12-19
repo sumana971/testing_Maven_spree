@@ -2,19 +2,25 @@ package Pages;
 
 import Suite.SuiteManager;
 import Util.DriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends SuiteManager {
 
     @FindBy(xpath = "//a[.='Bags']")
     WebElement bags;
+
+    @FindBy(xpath="//a[.='Mugs']")
+    WebElement mugs;
+
+    @FindBy(xpath="//a[.='Clothing']")
+    WebElement clothing;
 
     @FindBy(xpath = "//a[@class='cart-info nav-link full']")
     WebElement cartbtn;
@@ -43,13 +49,17 @@ public class HomePage extends SuiteManager {
 
     }
 //Verify the bags List
-    public void doverifyListOfBags() {
-        for (WebElement bags : bgs) {
-            String bg_text = bags.getText();
-            if (bg_text.contains("Bag")) {
-                System.out.println("The items which contain bag are" + bg_text);
-            }
+    public List<String> doverifyListOfBags() {
+        List<String> names=new ArrayList<String>();
+        for(int i=0;i<list.size();i++)
+
+        {
+            names.add(list.get(i).getText());
+            //System.out.println(text);
         }
+        return names;
+
+
     }
     //Reading the bag keyword from config file
     public void getProperties (String configname)
@@ -75,6 +85,16 @@ public class HomePage extends SuiteManager {
                 }
             }
             return new ProductPage();
+        }
+
+        public void clickAllItems()
+        {
+            WebDriverWait wait=new WebDriverWait(DriverManager.driver,20);
+            wait.until(ExpectedConditions.elementToBeClickable(mugs));
+            wait.until(ExpectedConditions.elementToBeClickable(clothing));
+            mugs.click();
+            clothing.click();
+
         }
 
         //Shopping cart details
